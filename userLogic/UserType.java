@@ -1,4 +1,4 @@
-package logic;
+package userLogic;
 
 public enum UserType {
 	ADMIN,
