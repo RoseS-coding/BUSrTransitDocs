@@ -12,12 +12,20 @@ public class UserService {
 	}
 	
 	private void initializeDatabase() {
-		userDatabase.put("1", new User("1", "Alice", "aliceemail", UserType.USER));
+		userDatabase.put("1", new User("1", "alice", "password123", "Alice", "aliceemail", UserType.USER));
 	}
 	
-	@SuppressWarnings("unlikely-arg-type")
 	public User getUserByID(String userID) {
 		return userDatabase.get(userID);
+	}
+	
+	public User validateUser(String username, String password) {
+		for (User user : userDatabase.values()) {
+			if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
+				return user;
+			}
+		}
+		return null;
 	}
 }
 
