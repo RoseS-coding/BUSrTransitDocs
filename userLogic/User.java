@@ -1,4 +1,4 @@
-package logic;
+package userLogic;
 
 public class User {
 	private String userID;
