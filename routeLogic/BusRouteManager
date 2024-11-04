@@ -1,0 +1,29 @@
+package routeLogic;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class BusRouteManager {
+	private List<Route> routes;
+	
+	public BusRouteManager() {
+		this.routes = new ArrayList<>();
+	}
+	
+	public void addRoute(Route route) {
+		routes.add(route);
+		System.out.println("Route added: " + route);
+	}
+	
+	public void updateRoute(String routeID) {
+		for (Route route: routes) {
+			if (route.getRouteID().equals(routeID)) {
+				//pass in parameters, then set here
+				System.out.println("Route updated: " + route);
+				return;
+			}
+		}
+		System.out.println("Route not found with ID: " + routeID);
+	}
+	
+}
