@@ -1,0 +1,83 @@
+package routeLogic;
+
+public class Route {
+	private String busID;
+	private String routeID;
+	private String departLocation;
+	private String arriveLocation;
+	private String departTime;
+	private String arriveTime; //TODO change this to password hash and calculate password hash for check
+	private int capacity;
+	//driver will be passed in
+	private String driver;
+	
+	public Route(String i, String departTime, String arriveTime, int capacity, String driver, String departLocation, String arriveLocation) {
+		this.busID = i;
+		this.departTime = departTime;
+		this.arriveTime = arriveTime;
+		this.capacity = capacity;
+		this.driver = driver;
+		this.departLocation = departLocation;
+		this.arriveLocation = arriveLocation;
+	}
+	
+	public String getRouteID() {
+		return routeID;
+	}
+	
+
+	public void setRouteID() {
+		this.routeID = routeID;
+	}
+	
+	
+	
+	public String getBusID() {
+		return busID;
+	}
+	public void setBusID() {
+		this.busID = busID;
+	}
+	
+	public String getDepartLocation() {
+		return departLocation;
+	}
+	public void setDepartLocation() {
+		this.departLocation = departLocation;
+	}
+	
+	public String getArriveLocation() {
+		return arriveLocation;
+	}
+	public void setArriveLocation() {
+		this.arriveLocation = arriveLocation;
+	}
+	
+	public String getDepartTime() {
+		return departTime;
+	}
+	public void setDepartTime() {
+		this.departTime = departTime;
+	}
+	
+	public String getArriveTime() {
+		return arriveTime;
+	}
+	public void setArriveTime() {
+		this.arriveTime = arriveTime;
+	}
+	
+	public int getCapacity() {
+		return capacity;
+	}
+	public void setCapacity() {
+		this.capacity = capacity;
+	}
+	
+	public String getDriver() {
+		return driver;
+	}
+	public void setDriver() {
+		this.driver = driver;
+	}
+}
