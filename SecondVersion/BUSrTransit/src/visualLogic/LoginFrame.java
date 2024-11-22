@@ -100,8 +100,8 @@ public class LoginFrame extends JFrame {
         if (loggedInUser  != null) {
             messageLabel.setForeground(Color.GREEN);
             messageLabel.setText("Login Successful!");
-            dispose(); // Close the login frame
-            Main.executeUserAction(loggedInUser ); // Call executeUser Action with the logged-in user
+            Main.executeUserAction(loggedInUser );
+            dispose(); // Close the login frame // Call executeUser Action with the logged-in user
         } else {
             messageLabel.setForeground(Color.RED);
             messageLabel.setText("Invalid username or password.");
