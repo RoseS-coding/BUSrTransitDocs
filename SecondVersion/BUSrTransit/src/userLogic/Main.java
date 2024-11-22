@@ -2,7 +2,7 @@ package userLogic;
 
 import java.util.Scanner;
 import roleActions.*;
-import visualLogic.LoginFrame;
+import visualLogic.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -66,21 +66,32 @@ public class Main {
 	}
 	
 	public static void executeUserAction(User user) {
-		PersonAction userAction;
-		switch (user.getUserType()) {
-		case ADMIN:
-			userAction = new AdminAction();
-			break;
-		case USER:
-			userAction = new UserAction();
-			break;
-		case DRIVER:
-			userAction = new DriverAction();
-			break;
-		default:
-			throw new IllegalStateException("Unexpected value: " + user.getUserType());
-		}
-		
-		userAction.performAction();
+		if (user == null) {
+
+            System.out.println("User  is null. Cannot execute action.");
+
+            return;
+
+        }
+
+
+        switch (user.getUserType()) {
+            case ADMIN:
+                AdminAction adminAction = new AdminAction();
+                AdminActionFrame adminActionFrame = new AdminActionFrame(adminAction);
+                adminActionFrame.setVisible(true);
+                break;
+            case USER:
+                UserAction userAction = new UserAction();
+                // Open user interface or perform user actions here
+                break;
+            case DRIVER:
+                DriverAction driverAction = new DriverAction();
+                // Open driver interface or perform driver actions here
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + user.getUserType());
+
+        }
 	}
 }
