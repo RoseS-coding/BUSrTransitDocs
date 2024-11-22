@@ -48,7 +48,7 @@ public class AdminAction implements PersonAction {
         }
     }
 
-    private void addRoute() {
+    public void addRoute() {
     	System.out.print("Enter Route ID: ");
         String routeId = scanner.nextLine();
         
@@ -77,7 +77,7 @@ public class AdminAction implements PersonAction {
         busRouteManager.addRoute(newRoute);
     }
 
-    private void updateRoute() {
+    public void updateRoute() {
         System.out.print("Enter Route ID to update: ");
         String routeID = scanner.nextLine();
         
@@ -104,13 +104,13 @@ public class AdminAction implements PersonAction {
         busRouteManager.updateRoute(routeID, busID, startLocation, endLocation, departTime, arriveTime, capacity, driver);
     }
 
-    private void deleteRoute() {
+    public void deleteRoute() {
         System.out.print("Enter Route ID to delete: ");
         String routeId = scanner.nextLine();
         busRouteManager.deleteRoute(routeId);
     }
 
-    private void viewRoutes() {
+    public void viewRoutes() {
         System.out.println("Current Bus Routes:");
         for (Route route : busRouteManager.getRoutes()) {
             System.out.println(route);
