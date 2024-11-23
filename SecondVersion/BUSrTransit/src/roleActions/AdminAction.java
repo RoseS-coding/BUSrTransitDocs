@@ -9,105 +9,37 @@ import java.util.Scanner;
 public class AdminAction implements PersonAction {
 	
 	private BusRouteManager busRouteManager;
-	private Scanner scanner;
-	
-	public AdminAction() {
-		this.busRouteManager = new BusRouteManager();
-		this.scanner = new Scanner(System.in);
-	}
-	
-	
-	//performAction needs to be called each time you want to do an action
-	@Override
-    public void performAction() {
-        System.out.println("Admin actions:");
-        System.out.println("1. Add Route");
-        System.out.println("2. Update Route");
-        System.out.println("3. Delete Route");
-        System.out.println("4. View Routes");
-        System.out.print("Select an action: ");
-        
-        int choice = scanner.nextInt();
-        scanner.nextLine(); // Consume newline
 
-        switch (choice) {
-            case 1:
-                addRoute();
-                break;
-            case 2:
-                updateRoute();
-                break;
-            case 3:
-                deleteRoute();
-                break;
-            case 4:
-                viewRoutes();
-                break;
-            default:
-                System.out.println("Invalid choice.");
-        }
+    public AdminAction() {
+        this.busRouteManager = new BusRouteManager();
     }
 
-    public void addRoute() {
-    	System.out.print("Enter Route ID: ");
-        String routeId = scanner.nextLine();
-        
-        System.out.print("Enter Bus ID: ");
-        String busID = scanner.nextLine();
-        
-        System.out.print("Enter Start Location: ");
-        String startLocation = scanner.nextLine();
-        
-        System.out.print("Enter End Location: ");
-        String endLocation = scanner.nextLine();
-        
-        System.out.println("Enter Depart Time: ");
-        String departTime = scanner.nextLine();
-        
-        System.out.println("Enter Arrival Time: ");
-        String arriveTime = scanner.nextLine();
-        
-        System.out.println("Enter Capacity: ");
-        String capacity = scanner.nextLine();
-        
-        System.out.println("Enter Driver ID: ");
-        String driver = scanner.nextLine();
-        
-        Route newRoute = new Route(routeId, busID, departTime, arriveTime, capacity, driver, startLocation, endLocation);
+    // Method to add a route
+    public void addRoute(Route newRoute) {
         busRouteManager.addRoute(newRoute);
     }
 
-    public void updateRoute() {
-        System.out.print("Enter Route ID to update: ");
-        String routeID = scanner.nextLine();
-        
-        System.out.print("Enter Bus ID: ");
-        String busID = scanner.nextLine();
-        
-        System.out.print("Enter Start Location: ");
-        String startLocation = scanner.nextLine();
-        
-        System.out.print("Enter End Location: ");
-        String endLocation = scanner.nextLine();
-        
-        System.out.println("Enter Depart Time: ");
-        String departTime = scanner.nextLine();
-        
-        System.out.println("Enter Arrival Time: ");
-        String arriveTime = scanner.nextLine();
-        
-        System.out.println("Enter Capacity: ");
-        String capacity = scanner.nextLine();
-        
-        System.out.println("Enter Driver ID: ");
-        String driver = scanner.nextLine();
-        busRouteManager.updateRoute(routeID, busID, startLocation, endLocation, departTime, arriveTime, capacity, driver);
+    // Method to update a route
+    public void updateRoute(String routeId, String busID, String startLocation, String endLocation, 
+                            String departTime, String arriveTime, String capacity, String driver) {
+        busRouteManager.updateRoute(routeId, busID, startLocation, endLocation, departTime, arriveTime, capacity, driver);
     }
 
-    public void deleteRoute() {
-        System.out.print("Enter Route ID to delete: ");
-        String routeId = scanner.nextLine();
+    // Method to delete a route
+    public void deleteRoute(String routeId) {
         busRouteManager.deleteRoute(routeId);
+    }
+
+    // Method to get the BusRouteManager (for viewing routes)
+    public BusRouteManager getBusRouteManager() {
+        return busRouteManager;
+    }
+
+    // This method can be removed as we are not using console input anymore
+    @Override
+    public void performAction() {
+        // This method is no longer needed since actions are performed through the GUI
+        throw new UnsupportedOperationException("This method is not used in the GUI version.");
     }
 
     public void viewRoutes() {
