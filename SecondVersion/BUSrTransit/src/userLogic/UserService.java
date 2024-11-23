@@ -12,7 +12,7 @@ public class UserService {
 	}
 	
 	private void initializeDatabase() {
-		userDatabase.put("1", new User("1", "alice", "password123", "Alice", "aliceemail", UserType.USER));
+		userDatabase.put("1", new User("1", "alice", "password123", "Alice", "aliceemail", UserType.ADMIN));
 	}
 	
 	public User getUserByID(String userID) {
