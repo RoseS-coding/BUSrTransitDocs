@@ -3,6 +3,7 @@ package userLogic;
 import java.util.Scanner;
 import roleActions.*;
 import visualLogic.*;
+import routeLogic.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -73,6 +74,7 @@ public class Main {
 
         }
 
+		BusRouteManager busRouteManager = new BusRouteManager();
 
         switch (user.getUserType()) {
             case ADMIN:
@@ -82,6 +84,8 @@ public class Main {
                 break;
             case USER:
                 UserAction userAction = new UserAction();
+                UserFrame userFrame = new UserFrame(busRouteManager);
+                userFrame.setVisible(true);
                 // Open user interface or perform user actions here
                 break;
             case DRIVER:
