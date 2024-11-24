@@ -2,6 +2,7 @@ package visualLogic;
 
 import roleActions.AdminAction;
 import routeLogic.Route;
+import userLogic.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,135 +12,75 @@ import java.awt.event.ActionListener;
 public class AdminActionFrame extends JFrame {
 	private AdminAction adminAction;
 
-    // Input fields for adding/updating routes
-    private JTextField routeIdField;
-    private JTextField busIdField;
-    private JTextField startLocationField;
-    private JTextField endLocationField;
-    private JTextField departTimeField;
-    private JTextField arriveTimeField;
-    private JTextField capacityField;
-    private JTextField driverIdField;
-
     public AdminActionFrame(AdminAction adminAction) {
-        this.adminAction = adminAction;
+        this.adminAction = adminAction; // Store the AdminAction instance
         setupUI();
     }
 
     private void setupUI() {
-        setTitle("Admin Actions");
-        setSize(400, 400);
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setLayout(new GridLayout(0, 2));
-
-        // Create input fields
-        routeIdField = new JTextField();
-        busIdField = new JTextField();
-        startLocationField = new JTextField();
-        endLocationField = new JTextField();
-        departTimeField = new JTextField();
-        arriveTimeField = new JTextField();
-        capacityField = new JTextField();
-        driverIdField = new JTextField();
-
-        // Add components to the frame
-        add(new JLabel("Route ID:"));
-        add(routeIdField);
-        add(new JLabel("Bus ID:"));
-        add(busIdField);
-        add(new JLabel("Start Location:"));
-        add(startLocationField);
-        add(new JLabel("End Location:"));
-        add(endLocationField);
-        add(new JLabel("Depart Time:"));
-        add(departTimeField);
-        add(new JLabel("Arrival Time:"));
-        add(arriveTimeField);
-        add(new JLabel("Capacity:"));
-        add(capacityField);
-        add(new JLabel("Driver ID:"));
-        add(driverIdField);
-
-        // Add buttons for actions
-        JButton addButton = new JButton("Add Route");
-        addButton.addActionListener(new ActionListener() {
+        setTitle("Admin Action");
+        setSize(300, 200);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new GridLayout(0, 1));
+        // Button to manage routes
+        JButton routeManagementButton = new JButton("Manage Routes");
+        routeManagementButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                addRoute();
+                openRouteManagementFrame();
             }
         });
 
-        JButton updateButton = new JButton("Update Route");
-        updateButton.addActionListener(new ActionListener() {
+        // Button to manage users
+        JButton userManagementButton = new JButton("Manage Users");
+        userManagementButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                updateRoute();
+                openUserManagementFrame();
+            }
+        });
+        
+     // Button to manage drivers
+        JButton driverManagementButton = new JButton("Manage Drivers");
+        driverManagementButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                openManageDriversFrame();
             }
         });
 
-        JButton deleteButton = new JButton("Delete Route");
-        deleteButton.addActionListener(new ActionListener() {
+        // Exit button
+        JButton exitButton = new JButton("Exit");
+        exitButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                deleteRoute();
-            }
-        });
-
-        JButton viewButton = new JButton("View Routes");
-        viewButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                viewRoutes();
+                dispose(); // Close the frame
             }
         });
 
         // Add buttons to the frame
-        add(addButton);
-        add(updateButton);
-        add(deleteButton);
-        add(viewButton);
+        add(routeManagementButton);
+        add(userManagementButton);
+        add(driverManagementButton);
+        add(exitButton);
     }
 
-    private void addRoute() {
-        String routeId = routeIdField.getText();
-        String busID = busIdField.getText();
-        String startLocation = startLocationField.getText();
-        String endLocation = endLocationField.getText();
-        String departTime = departTimeField.getText();
-        String arriveTime = arriveTimeField.getText();
-        String capacity = capacityField.getText();
-        String driver = driverIdField.getText();
-
-        Route newRoute = new Route(routeId, busID, departTime, arriveTime, capacity, driver, startLocation, endLocation);
-        adminAction.addRoute(newRoute);
-        JOptionPane.showMessageDialog(this, "Route added successfully!");
+    private void openRouteManagementFrame() {
+        // Create and display the RouteManagementFrame with adminAction
+        RouteManagementFrame routeManagementFrame = new RouteManagementFrame(adminAction);
+        routeManagementFrame.setVisible(true);
     }
 
-    private void updateRoute() {
-        String routeId = routeIdField.getText();
-        String busID = busIdField.getText();
-        String startLocation = startLocationField.getText();
-        String endLocation = endLocationField.getText();
-        String departTime = departTimeField.getText();
-        String arriveTime = arriveTimeField.getText();
-        String capacity = capacityField.getText();
-        String driver = driverIdField.getText();
-
-        adminAction.updateRoute(routeId, busID, startLocation, endLocation, departTime, arriveTime, capacity, driver);
-        JOptionPane.showMessageDialog(this, "Route updated successfully!");
+    private void openUserManagementFrame() {
+        // Create and display the ManageUsersFrame with adminAction
+        ManageUsersFrame userManagementFrame = new ManageUsersFrame(adminAction);
+        userManagementFrame.setVisible(true);
+    }
+    
+    private void openManageDriversFrame() {
+        // Create and display the ManageDriversFrame with adminAction
+        ManageDriversFrame manageDriversFrame = new ManageDriversFrame(adminAction);
+        manageDriversFrame.setVisible(true);
     }
 
-    private void deleteRoute() {
-        String routeId = routeIdField.getText();
-        adminAction.deleteRoute(routeId);
-        JOptionPane.showMessageDialog(this, "Route deleted successfully!");
-    }
-
-    private void viewRoutes() {
-        StringBuilder routesList = new StringBuilder("Current Bus Routes:\n");
-        for (Route route : adminAction.getBusRouteManager().getRoutes()) {
-            routesList.append(route.toString()).append("\n");
-        }
-        JOptionPane.showMessageDialog(this, routesList.toString());
-    }
 }
