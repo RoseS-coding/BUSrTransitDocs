@@ -72,7 +72,7 @@ public class SearchRoutesFrame extends JFrame {
         String arriveLocation = arriveLocationField.getText().trim();
 
         // Filter routes based on departure and arrival locations
-        List<Route> matchingRoutes = busRouteManager.getAllRoutes().stream()
+        List<Route> matchingRoutes = busRouteManager.getRoutes().stream()
                 .filter(route -> route.getDepartLocation().equalsIgnoreCase(departLocation) &&
                                  route.getArriveLocation().equalsIgnoreCase(arriveLocation))
                 .collect(Collectors.toList());
