@@ -75,7 +75,7 @@ public class UserFrame extends JFrame {
     private void viewAvailableRoutes() {
         // Create a dialog to display available routes
         StringBuilder routesInfo = new StringBuilder("Available Routes:\n");
-        for (Route route : busRouteManager.getAllRoutes()) {
+        for (Route route : busRouteManager.getRoutes()) {
             routesInfo.append(route.toString()).append("\n");
         }
         JOptionPane.showMessageDialog(this, routesInfo.toString(), "Available Routes", JOptionPane.INFORMATION_MESSAGE);
@@ -90,6 +90,7 @@ public class UserFrame extends JFrame {
         }
     }
 
+    /**
     public static void main(String[] args) {
         // Create an instance of BusRouteManager and add some routes for testing
         BusRouteManager busRouteManager = new BusRouteManager();
@@ -102,4 +103,5 @@ public class UserFrame extends JFrame {
         UserFrame userFrame = new UserFrame(busRouteManager);
         userFrame.setVisible(true);
     }
+    **/
 }
