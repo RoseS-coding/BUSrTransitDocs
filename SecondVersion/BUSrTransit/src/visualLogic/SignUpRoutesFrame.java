@@ -69,7 +69,7 @@ public class SignUpRoutesFrame extends JFrame {
 
     private void loadAvailableRoutes() {
         // Fetch available routes from the BusRouteManager
-        List<Route> availableRoutes = busRouteManager.getAllRoutes();
+        List<Route> availableRoutes = busRouteManager.getRoutes();
 
         // Add routes to the list model
         for (Route route : availableRoutes) {
@@ -77,6 +77,7 @@ public class SignUpRoutesFrame extends JFrame {
         }
     }
 
+    /**
     public static void main(String[] args) {
         // Create an instance of BusRouteManager and add some routes for testing
         BusRouteManager busRouteManager = new BusRouteManager();
@@ -89,4 +90,5 @@ public class SignUpRoutesFrame extends JFrame {
         SignUpRoutesFrame signUpFrame = new SignUpRoutesFrame(busRouteManager);
         signUpFrame.setVisible(true);
     }
+    **/
 }
