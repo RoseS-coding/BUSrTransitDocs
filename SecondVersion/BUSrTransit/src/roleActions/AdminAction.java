@@ -61,7 +61,7 @@ public class AdminAction implements PersonAction {
     }
     
     public List<Route> getAllRoutes() {
-        return busRouteManager.getAllRoutes();
+        return busRouteManager.getRoutes();
     }
     
     public void addUser (User user) {
