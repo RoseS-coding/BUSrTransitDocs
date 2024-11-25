@@ -41,6 +41,30 @@ public class User {
 		return userType;
 	}
 	
+	public void setUserID(String userID) {
+		this.userID = userID;
+	}
+	
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	public void setUserType(UserType userType) {
+		this.userType = userType;
+	}
+	
 	@Override 
 	public String toString() {
 		return "User: " + userID + ", " + name + ", " + email + ", " + userType;
