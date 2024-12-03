@@ -1,10 +1,12 @@
 package visualLogic;
 
 import java.awt.*;
+
+import java.util.ArrayList;
 import java.awt.image.BufferedImage;
 import javax.swing.*;
 import userLogic.*;
-
+import java.util.List;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -17,6 +19,7 @@ import userLogic.UserService;
 import java.util.Map;
 import userLogic.*;
 import dataLogic.*;
+import commLogic.*;
 
 public class LoginFrame extends JFrame {
 
@@ -29,12 +32,16 @@ public class LoginFrame extends JFrame {
     private UserService userService;
     private UserDataLoader userDataLoader;
     private Map<String, User> userDatabase;
+    private ArrayList<Message> messages;
+    private MessageStorage messageStorage;
 
-    public LoginFrame(UserService userService, String csvFilePath, Map<String, User> userDatabase) {
+    public LoginFrame(UserService userService, String csvFilePath, Map<String, User> userDatabase, ArrayList<Message> messages, MessageStorage messageStorage) {
     	this.userService = userService;
     	this.userDataLoader = new UserDataLoader(csvFilePath);
     	this.userDatabase = userDatabase;
     	this.userDataLoader.loadUsers(userDatabase);
+    	this.messageStorage = messageStorage;
+    	this.messages = messageStorage.loadMessages();
         // Set up the frame
         setTitle("Login Page");
         setSize(1080, 800);
@@ -119,7 +126,7 @@ public class LoginFrame extends JFrame {
         if (loggedInUser  != null) {
             messageLabel.setForeground(Color.GREEN);
             messageLabel.setText("Login Successful!");
-            Main.executeUserAction(loggedInUser );
+            Main.executeUserAction(loggedInUser, userService, messages, messageStorage);
             dispose(); // Close the login frame // Call executeUser Action with the logged-in user
         } else {
             messageLabel.setForeground(Color.RED);
