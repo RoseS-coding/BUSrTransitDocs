@@ -30,7 +30,7 @@ JOIN
 JOIN 
     Paths p ON r.path_id = p.path_id;
 
-#identify high capacity buses and routes
+#identify high capacity buses and routes - A select statement with that includes at least two aggregate functions
 SELECT 
     b.capacity,
     b.license_plate,
