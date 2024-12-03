@@ -3,6 +3,7 @@ package visualLogic;
 import roleActions.AdminAction;
 import routeLogic.*;
 import userLogic.*;
+import commLogic.*;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -12,13 +13,17 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class AdminActionFrame extends JFrame {
 	private AdminAction adminAction;
 	private BusRouteManager busRouteManager;
-    public AdminActionFrame(AdminAction adminAction, BusRouteManager busRouteManager) {
+	private ArrayList<Message> messages;
+	
+    public AdminActionFrame(AdminAction adminAction, BusRouteManager busRouteManager, ArrayList<Message> messages) {
         this.adminAction = adminAction; // Store the AdminAction instance
         this.busRouteManager = busRouteManager;
+        this.messages = messages;
         setupUI();
     }
 
@@ -89,6 +94,7 @@ public class AdminActionFrame extends JFrame {
 
         //Need to add message viewing functionality
         JButton messageButton = new JButton("Messages");
+        messageButton.addActionListener(e -> viewMessages());
         
         // Add buttons to the frame
         routeManagementButton.setBounds(190, 300, 200, 60);
@@ -121,6 +127,49 @@ public class AdminActionFrame extends JFrame {
         // Create and display the ManageDriversFrame with adminAction
         ManageDriversFrame manageDriversFrame = new ManageDriversFrame(adminAction);
         manageDriversFrame.setVisible(true);
+    }
+    
+    private void viewMessages() {
+        if (messages.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No messages from drivers.");
+        } else {
+            StringBuilder messageList = new StringBuilder("Messages from Drivers:\n");
+            for (Message message : messages) {
+                messageList.append(message.toString()).append("\n"); // Includes category in the output
+            }
+            JOptionPane.showMessageDialog(this, messageList.toString(), "Driver Messages", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+    private void sendMessageToDriver() {
+        String driverName = JOptionPane.showInputDialog(this, "Enter the driver's name:");
+        if (driverName != null && !driverName.trim().isEmpty()) {
+            String messageContent = JOptionPane.showInputDialog(this, "Enter your message to the driver:");
+            if (messageContent != null && !messageContent.trim().isEmpty()) {
+                // Display category selection dialog
+                MessageCats[] categories = MessageCats.values();
+                MessageCats selectedCategory = (MessageCats) JOptionPane.showInputDialog(
+                        this,
+                        "Select the message category:",
+                        "Message Category",
+                        JOptionPane.PLAIN_MESSAGE,
+                        null,
+                        categories,
+                        categories[0] // Default selection
+                );
+
+                if (selectedCategory != null) {
+                    Message message = new Message("Admin", driverName, messageContent, selectedCategory);
+                    messages.add(message); // Store the message
+                    JOptionPane.showMessageDialog(this, "Message sent to " + driverName + "!");
+                } else {
+                    JOptionPane.showMessageDialog(this, "Message category selection was cancelled.");
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Message cannot be empty.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Driver name cannot be empty.");
+        }
     }
 
 }
