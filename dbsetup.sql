@@ -115,6 +115,36 @@ INSERT INTO route (path_id, bus_id, license_number) VALUES
 (2, 2, 'L002'),
 (2, 2, 'L002');
 
+(3, 3, 'LMN4321');
+
+-- Route for Path ID 4
+INSERT INTO Route (path_id, bus_id, license_number) VALUES
+(4, 4, 'JKL9876');
+
+-- Route for Path ID 5
+INSERT INTO Route (path_id, bus_id, license_number) VALUES
+(5, 5, 'QRS1234');
+
+-- Route for Path ID 6
+INSERT INTO Route (path_id, bus_id, license_number) VALUES
+(6, 6, 'TUV5678');
+
+-- Route for Path ID 7
+INSERT INTO Route (path_id, bus_id, license_number) VALUES
+(7, 7, 'WXY4321');
+
+-- Route for Path ID 8
+INSERT INTO Route (path_id, bus_id, license_number) VALUES
+(8, 8, 'ZAB9876');
+
+-- Route for Path ID 9
+INSERT INTO Route (path_id, bus_id, license_number) VALUES
+(9, 9, 'CDE1234');
+
+-- Route for Path ID 10
+INSERT INTO Route (path_id, bus_id, license_number) VALUES
+(10, 10, 'FGH5678');
+
 INSERT INTO messages (send_user, receive_user, message, category) VALUES
 (1, 2, 'The bus broke down on the highway!', 'URGENT'),
 (2, 1, 'I need the bus maintenance report for last month.', 'BUS_MAINTENANCE'),
