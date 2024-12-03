@@ -56,3 +56,16 @@ JOIN
     Driver d ON r.license_number = d.license_number
 JOIN 
     Paths p ON r.path_id = p.path_id;
+
+#Count the number of routes for each driver for payment by route, exclude drivers with no routes
+SELECT 
+    d.name AS Driver_Name,
+    (SELECT COUNT(*) 
+     FROM Route r 
+     WHERE r.license_number = d.license_number) AS Route_Count
+FROM 
+    Driver d
+WHERE 
+    (SELECT COUNT(*) 
+     FROM Route r 
+     WHERE r.license_number = d.license_number) > 0;
