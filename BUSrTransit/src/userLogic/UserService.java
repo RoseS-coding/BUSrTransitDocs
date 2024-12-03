@@ -12,10 +12,12 @@ import dataLogic.*;
 public class UserService {
 	private Map<String, User> userDatabase;
 	private UserDataLoader userDataLoader;
+	private Map<String, Driver> driverDatabase;
 	
 	public UserService(String csvFilePath) {
 		this.userDataLoader = new UserDataLoader(csvFilePath);
 		this.userDatabase = initializeDatabase();
+		this.driverDatabase = createDriverDB();
 	}
 	
 	private Map<String, User> initializeDatabase() {
@@ -26,6 +28,19 @@ public class UserService {
 		userDataLoader.loadUsers(userDatabase);
 		
 		return userDatabase;
+	}
+	
+	private Map<String, Driver> createDriverDB() {
+		Map<String, Driver> driverDatabase = new HashMap<>();
+		
+		for (User user : userDatabase.values()) {
+			if (user.getUserType() == UserType.DRIVER) {
+				Driver driver = new Driver(user.getUserID(), user.getName());
+				driverDatabase.put(driver.getId(), driver);
+			}
+		}
+		
+		return driverDatabase;
 	}
 	
 	
@@ -61,6 +76,10 @@ public class UserService {
 	
 	public Map<String, User> getUserDatabase() {
 		return userDatabase;
+	}
+	
+	public Map<String, Driver> getDriverDatabase() {
+		return driverDatabase;
 	}
 }
 
