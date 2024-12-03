@@ -4,16 +4,22 @@ import java.util.Scanner;
 import roleActions.*;
 import visualLogic.*;
 import routeLogic.*;
+import commLogic.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import javax.swing.*;
+import java.util.ArrayList;
 
 import dataLogic.RouteLoader;
 public class Main {
 	public static void main(String args[]) {
 		UserService userService = new UserService("src/Data/testuserinput.csv");
 		Scanner scanner = new Scanner(System.in);
+		
+		ArrayList<Message> messages = new ArrayList<>();
+		MessageStorage messageStorage = new MessageStorage("src/Data/messages.csv");
+		messages.addAll(messageStorage.loadMessages());
 		
 		//TOOD reformat inputs to be app based
 		
@@ -39,7 +45,7 @@ public class Main {
 		**/
 		SwingUtilities.invokeLater(() -> {
 
-            LoginFrame loginFrame = new LoginFrame(userService, "src/Data/testuserinput.csv", userService.getUserDatabase());
+            LoginFrame loginFrame = new LoginFrame(userService, "src/Data/testuserinput.csv", userService.getUserDatabase(), messages, messageStorage);
 
             loginFrame.setVisible(true);
 
@@ -67,7 +73,7 @@ public class Main {
 		}
 	}
 	
-	public static void executeUserAction(User user) {
+	public static void executeUserAction(User user, UserService userService, ArrayList<Message> messages, MessageStorage messageStorage) {
 		if (user == null) {
 
             System.out.println("User  is null. Cannot execute action.");
@@ -84,8 +90,8 @@ public class Main {
 		
         switch (user.getUserType()) {
             case ADMIN:
-                AdminAction adminAction = new AdminAction();
-                AdminActionFrame adminActionFrame = new AdminActionFrame(adminAction, busRouteManager);
+                AdminAction adminAction = new AdminAction(userService);
+                AdminActionFrame adminActionFrame = new AdminActionFrame(adminAction, busRouteManager, messages);
                 adminActionFrame.setVisible(true);
                 break;
             case USER:
@@ -96,11 +102,14 @@ public class Main {
                 break;
             case DRIVER:
                 DriverAction driverAction = new DriverAction();
+                DriverFrame driverFrame = new DriverFrame(user, busRouteManager, messages, messageStorage);
+                driverFrame.setVisible(true);
                 // Open driver interface or perform driver actions here
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + user.getUserType());
 
         }
+        messageStorage.saveMessages(messages);
 	}
 }
