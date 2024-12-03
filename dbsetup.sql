@@ -71,7 +71,7 @@ INSERT INTO Users (username, password, name, email, userType) VALUES
 ('quinn', 'driverPass5', 'Quinn Fabray', 'quinn@example.com', 'DRIVER'),
 ('rachel', 'driverPass6', 'Rachel Green', 'rachel@example.com', 'DRIVER'),
 ('sara', 'driverPass7', 'Sara Connor', 'sara@example.com', 'DRIVER'),
-('tom', 'driverPass8', 'Tom Hardy', 'tom@example.com', 'DRIVER');;
+('tom', 'driverPass8', 'Tom Hardy', 'tom@example.com', 'DRIVER');
 
 INSERT INTO Paths (depart_location, arrive_location, depart_time, arrive_time) VALUES
 ('City A', 'City B', '2023-10-01 08:00:00', '2023-10-01 10:00:00'),
