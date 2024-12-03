@@ -1,6 +1,9 @@
 #meaningful queries
-
+#Required to mark who created each query
+    
 #search for all of a driver's routes by their name
+#Created by Roselyn Schnabel
+# This query was created with the intent of use by a driver so that they can have a clear view of the routes assigned to their schedule. 
 SELECT 
     d.name AS driver_name,
     p.depart_location,
@@ -17,6 +20,8 @@ WHERE
     d.name = 'Frank Castle';
 
 #search for all driver's routes
+#Created by Roselyn Schnabel
+# This is a basic query expanding on the search by name that displays all route data in understandable information instead of identifiers.
 SELECT 
     d.name AS driver_name,
     p.depart_location,
@@ -31,6 +36,8 @@ JOIN
     Paths p ON r.path_id = p.path_id;
 
 #identify high capacity buses and routes - A select statement with that includes at least two aggregate functions
+#Created by Roselyn Schnabel
+# This query can be used to identify areas of high capacity and use so bus use  can be analyzed for future expansion.
 SELECT 
     b.capacity,
     b.license_plate,
@@ -48,6 +55,8 @@ WHERE
     b.capacity > 40;
 
 #Provide route details in string format - A select statement that uses at least one join, concatenation, and distinct clause
+#Created by Roselyn Schnabel
+# This query displays route details in a user-friendly string format.
 SELECT DISTINCT 
     CONCAT(d.name, ' - ', p.depart_location, ' to ', p.arrive_location, ' (', p.depart_time, ' to ', p.arrive_time, ')') AS Route_Details
 FROM 
@@ -58,6 +67,8 @@ JOIN
     Paths p ON r.path_id = p.path_id;
 
 #Count the number of routes for each driver for payment by route, exclude drivers with no routes - A select statement that includes at least one subquery
+#Created by Roselyn Schnabel
+# This query can be used if driver payment is based on the number of routes traveled or to recognize drivers with an exceptional number of routes. 
 SELECT 
     d.name AS Driver_Name,
     (SELECT COUNT(*) 
@@ -73,6 +84,8 @@ ORDER BY
     Route_Count DESC;
 
 #Show routes in chronologic order - A select statement that uses an order by clause
+#Created by Roselyn Schnabel
+#This query can be used to display all of a day's routes in order. Administrators will have a schedule-focused view to help them anticipate events. 
 SELECT 
     r.route_id,
     p.depart_location,
