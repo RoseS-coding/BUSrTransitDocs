@@ -45,4 +45,4 @@ JOIN
 JOIN 
     Paths p ON r.path_id = p.path_id
 WHERE 
-    b.capacity > 50;
+    b.capacity > 40;
