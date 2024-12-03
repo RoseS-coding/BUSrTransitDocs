@@ -88,3 +88,13 @@ INSERT INTO Bus (maintenance, license_plate, capacity) VALUES
 ('Needs Maintenance', 'KA-08-HB-0123', 40),
 ('Regular', 'KA-09-HB-4567', 55),
 ('Regular', 'KA-10-HB-8901', 50);
+
+INSERT INTO driver (license_number, name, user_id) VALUES
+('L001', 'jacob', 4),
+('L002', 'Frank Castle', 9);
+
+INSERT INTO route (path_id, bus_id, license_number) VALUES
+(1, 1, 'L001'),
+(1, 1, 'L001'),
+(2, 2, 'L002'),
+(2, 2, 'L002');
