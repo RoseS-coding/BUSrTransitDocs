@@ -29,3 +29,20 @@ JOIN
     Route r ON d.license_number = r.license_number
 JOIN 
     Paths p ON r.path_id = p.path_id;
+
+#identify high capacity buses and routes
+SELECT 
+    b.capacity,
+    b.license_plate,
+    p.depart_location,
+    p.arrive_location,
+    p.depart_time,
+    p.arrive_time
+FROM 
+    Bus b
+JOIN 
+    Route r ON b.bus_id = r.bus_id
+JOIN 
+    Paths p ON r.path_id = p.path_id
+WHERE 
+    b.capacity > 50;
