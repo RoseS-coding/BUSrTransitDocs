@@ -17,12 +17,14 @@ public class AdminAction implements PersonAction {
 	private List<User> users;
 	private Map<String, Driver> drivers;
 	private Map<String, String> driverAssignments;
+	private UserService userService;
 	
-    public AdminAction() {
+    public AdminAction(UserService userService) {
         this.busRouteManager = new BusRouteManager();
         this.users = new ArrayList<>();
         this.drivers = new HashMap<>();
         this.driverAssignments = new HashMap<>();
+        this.userService = userService;
     }
 
     // Method to add a route
@@ -105,16 +107,20 @@ public class AdminAction implements PersonAction {
             System.out.println("Driver ID not found: " + driverId);
         }
     }
+    
+    public Map<String, Driver> getDriverDatabase() {
+    	return userService.getDriverDatabase();
+    }
+    
     // Method to get driver information
     public String getDriverInfo(String driverId) {
         Driver driver = drivers.get(driverId);
         if (driver != null) {
             return "Driver ID: " + driver.getId() + "\n" +
                    "Name: " + driver.getName() + "\n" +
-                   "License Number: " + driver.getLicenseNumber() + "\n" +
                    "Assigned Route: " + driverAssignments.getOrDefault(driverId, "Not Assigned");
         } else {
-            return "Driver ID not found: " + driver .getId();
+            return "Driver ID not found: " + driver.getId();
         }
     }
 
@@ -132,6 +138,18 @@ public class AdminAction implements PersonAction {
         } else {
             System.out.println("Driver ID not found: " + driverId);
         }
+    }
+    
+    public String getAllDriversInfo() {
+        StringBuilder driverInfo = new StringBuilder();
+        Map<String, Driver> drivers = getDriverDatabase(); // Assuming you have a method to get the driver database
+        for (Driver driver : drivers.values()) {
+            driverInfo.append("ID: ").append(driver.getId())
+                       .append(", Name: ").append(driver.getName())
+                       .append("\n");
+        }
+
+        return driverInfo.length() > 0 ? driverInfo.toString() : "No drivers available.";
     }
 	
 	/** ADMIN actions
