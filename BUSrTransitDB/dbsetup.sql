@@ -73,6 +73,28 @@ INSERT INTO Users (username, password, name, email, userType) VALUES
 ('sara', 'driverPass7', 'Sara Connor', 'sara@example.com', 'DRIVER'),
 ('tom', 'driverPass8', 'Tom Hardy', 'tom@example.com', 'DRIVER');
 
+INSERT INTO users (username, password, full_name, email, user_type) VALUES
+('anna', 'password11', 'Anna Smith', 'anna.smith@example.com', 'USER'),
+('ben', 'password12', 'Ben Taylor', 'ben.taylor@example.com', 'USER'),
+('claire', 'password13', 'Claire Williams', 'claire.williams@example.com', 'USER'),
+('daniel', 'password14', 'Daniel Adams', 'daniel.adams@example.com', 'USER'),
+('ella', 'password15', 'Ella Johnson', 'ella.johnson@example.com', 'USER'),
+('finn', 'password16', 'Finn Brown', 'finn.brown@example.com', 'USER'),
+('grace', 'password17', 'Grace Harris', 'grace.harris@example.com', 'USER'),
+('henry', 'password18', 'Henry Clark', 'henry.clark@example.com', 'USER'),
+('isabel', 'password19', 'Isabel Moore', 'isabel.moore@example.com', 'USER'),
+('jack', 'password20', 'Jack Davis', 'jack.davis@example.com', 'USER'),
+('karen', 'password21', 'Karen Lewis', 'karen.lewis@example.com', 'USER'),
+('lily', 'password22', 'Lily Walker', 'lily.walker@example.com', 'USER'),
+('matt', 'password23', 'Matt Allen', 'matt.allen@example.com', 'USER'),
+('nora', 'password24', 'Nora Young', 'nora.young@example.com', 'USER'),
+('oliver', 'password25', 'Oliver King', 'oliver.king@example.com', 'USER'),
+('peter', 'password26', 'Peter Wright', 'peter.wright@example.com', 'USER'),
+('quincy', 'password27', 'Quincy Scott', 'quincy.scott@example.com', 'USER'),
+('rachel', 'password28', 'Rachel Carter', 'rachel.carter@example.com', 'USER'),
+('sam', 'password29', 'Sam Mitchell', 'sam.mitchell@example.com', 'USER'),
+('tessa', 'password30', 'Tessa Evans', 'tessa.evans@example.com', 'USER');
+
 INSERT INTO Paths (depart_location, arrive_location, depart_time, arrive_time) VALUES
 ('City A', 'City B', '2023-10-01 08:00:00', '2023-10-01 10:00:00'),
 ('City C', 'City D', '2023-10-01 09:00:00', '2023-10-01 11:30:00'),
