@@ -2,16 +2,16 @@
 
 #search for all of a driver's routes by their name
 SELECT 
-    r.depart_location,
-    r.arrive_location,
-    r.depart_time,
-    r.arrive_time,
-    b.license_plate
+    d.name AS driver_name,
+    p.depart_location,
+    p.arrive_location,
+    p.depart_time,
+    p.arrive_time
 FROM 
-    routes r
+    Driver d
 JOIN 
-    drivers d ON r.driver_id = d.driver_id
+    Route r ON d.license_number = r.license_number
 JOIN 
-    buses b ON r.bus_id = b.bus_id
+    Paths p ON r.path_id = p.path_id
 WHERE 
     d.name = 'Frank Castle';
