@@ -46,3 +46,13 @@ JOIN
     Paths p ON r.path_id = p.path_id
 WHERE 
     b.capacity > 40;
+
+#Provide route details in string format - A select statement that uses at least one join, concatenation, and distinct clause
+SELECT DISTINCT 
+    CONCAT(d.name, ' - ', p.depart_location, ' to ', p.arrive_location, ' (', p.depart_time, ' to ', p.arrive_time, ')') AS Route_Details
+FROM 
+    Route r
+JOIN 
+    Driver d ON r.license_number = d.license_number
+JOIN 
+    Paths p ON r.path_id = p.path_id;
