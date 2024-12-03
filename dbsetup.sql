@@ -100,6 +100,14 @@ INSERT INTO Bus (maintenance, license_plate, capacity) VALUES
 INSERT INTO driver (license_number, name, user_id) VALUES
 ('L001', 'jacob', 4),
 ('L002', 'Frank Castle', 9);
+('LMN4321', 'Mike Johnson', 14),
+('JKL9876', 'Nina Williams', 15),
+('QRS1234', 'Oscar Isaac', 16),
+('TUV5678', 'Paul Atreides', 17),
+('WXY4321', 'Quinn Fabray', 18),
+('ZAB9876', 'Rachel Green', 19),
+('CDE1234', 'Sara Connor', 20),
+('FGH5678', 'Tom Hardy', 21);
 
 INSERT INTO route (path_id, bus_id, license_number) VALUES
 (1, 1, 'L001'),
