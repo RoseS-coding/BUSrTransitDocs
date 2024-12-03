@@ -68,4 +68,6 @@ FROM
 WHERE 
     (SELECT COUNT(*) 
      FROM Route r 
-     WHERE r.license_number = d.license_number) > 0;
+     WHERE r.license_number = d.license_number) > 0
+ORDER BY
+    Route_Count DESC;
