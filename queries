@@ -1,0 +1,17 @@
+#meaningful queries
+
+#search for all of a driver's routes by their name
+SELECT 
+    r.depart_location,
+    r.arrive_location,
+    r.depart_time,
+    r.arrive_time,
+    b.license_plate
+FROM 
+    routes r
+JOIN 
+    drivers d ON r.driver_id = d.driver_id
+JOIN 
+    buses b ON r.bus_id = b.bus_id
+WHERE 
+    d.name = 'Frank Castle';
