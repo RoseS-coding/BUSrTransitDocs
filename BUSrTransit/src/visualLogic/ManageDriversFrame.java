@@ -50,6 +50,14 @@ public class ManageDriversFrame extends JFrame {
                 viewDriverInfo();
             }
         });
+        
+        JButton viewAllDriversButton = new JButton("View All Drivers");
+        viewAllDriversButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                viewAllDrivers();
+            }
+        });
 
         // Exit button
         JButton exitButton = new JButton("Exit");
@@ -63,6 +71,7 @@ public class ManageDriversFrame extends JFrame {
         // Add buttons to the frame
         add(assignButton);
         add(viewInfoButton);
+        add(viewAllDriversButton);
         add(exitButton);
     }
 
@@ -84,5 +93,19 @@ public class ManageDriversFrame extends JFrame {
         // Logic to retrieve and display driver information
         String driverInfo = adminAction.getDriverInfo(driverId);
         JOptionPane.showMessageDialog(this, driverInfo);
+    }
+    
+    private void viewAllDrivers() {
+    	String allDriversInfo = adminAction.getAllDriversInfo(); // Assuming this method exists in AdminAction
+        // Create a JTextArea to display the driver information
+        JTextArea textArea = new JTextArea(20, 30);
+        textArea.setText(allDriversInfo);
+        textArea.setEditable(false); // Make it read-only
+        // Wrap the JTextArea in a JScrollPane
+        JScrollPane scrollPane = new JScrollPane(textArea);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+
+        // Show the scroll pane in a dialog
+        JOptionPane.showMessageDialog(this, scrollPane, "All Drivers", JOptionPane.INFORMATION_MESSAGE);
     }
 }
