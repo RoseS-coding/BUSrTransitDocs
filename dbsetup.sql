@@ -63,7 +63,15 @@ INSERT INTO Users (username, password, name, email, userType) VALUES
 ('grace', 'securePass7', 'Grace Lee', 'grace@example.com', 'USER'),
 ('hannah', 'securePass8', 'Hannah Montana', 'hannah@example.com', 'USER'),
 ('ian', 'securePass9', 'Ian Malcolm', 'ian@example.com', 'USER'),
-('julia', 'securePass10', 'Julia Roberts', 'julia@example.com', 'ADMIN');
+('julia', 'securePass10', 'Julia Roberts', 'julia@example.com', 'ADMIN'),
+('mike', 'driverPass1', 'Mike Johnson', 'mike@example.com', 'DRIVER'),
+('nina', 'driverPass2', 'Nina Williams', 'nina@example.com', 'DRIVER'),
+('oscar', 'driverPass3', 'Oscar Isaac', 'oscar@example.com', 'DRIVER'),
+('paul', 'driverPass4', 'Paul Atreides', 'paul@example.com', 'DRIVER'),
+('quinn', 'driverPass5', 'Quinn Fabray', 'quinn@example.com', 'DRIVER'),
+('rachel', 'driverPass6', 'Rachel Green', 'rachel@example.com', 'DRIVER'),
+('sara', 'driverPass7', 'Sara Connor', 'sara@example.com', 'DRIVER'),
+('tom', 'driverPass8', 'Tom Hardy', 'tom@example.com', 'DRIVER');;
 
 INSERT INTO Paths (depart_location, arrive_location, depart_time, arrive_time) VALUES
 ('City A', 'City B', '2023-10-01 08:00:00', '2023-10-01 10:00:00'),
