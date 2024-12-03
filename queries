@@ -15,3 +15,17 @@ JOIN
     Paths p ON r.path_id = p.path_id
 WHERE 
     d.name = 'Frank Castle';
+
+#search for all driver's routes
+SELECT 
+    d.name AS driver_name,
+    p.depart_location,
+    p.arrive_location,
+    p.depart_time,
+    p.arrive_time
+FROM 
+    Driver d
+JOIN 
+    Route r ON d.license_number = r.license_number
+JOIN 
+    Paths p ON r.path_id = p.path_id;
