@@ -57,7 +57,7 @@ JOIN
 JOIN 
     Paths p ON r.path_id = p.path_id;
 
-#Count the number of routes for each driver for payment by route, exclude drivers with no routes
+#Count the number of routes for each driver for payment by route, exclude drivers with no routes - A select statement that includes at least one subquery
 SELECT 
     d.name AS Driver_Name,
     (SELECT COUNT(*) 
