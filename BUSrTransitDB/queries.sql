@@ -71,3 +71,17 @@ WHERE
      WHERE r.license_number = d.license_number) > 0
 ORDER BY
     Route_Count DESC;
+
+#Show routes in chronologic order - A select statement that uses an order by clause
+SELECT 
+    r.route_id,
+    p.depart_location,
+    p.arrive_location,
+    p.depart_time,
+    p.arrive_time
+FROM 
+    Route r
+JOIN 
+    Paths p ON r.path_id = p.path_id
+ORDER BY 
+    p.depart_time ASC;
