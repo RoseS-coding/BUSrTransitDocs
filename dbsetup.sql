@@ -115,6 +115,7 @@ INSERT INTO route (path_id, bus_id, license_number) VALUES
 (2, 2, 'L002'),
 (2, 2, 'L002');
 
+INSERT INTO Route (path_id, bus_id, license_number) VALUES
 (3, 3, 'LMN4321');
 
 -- Route for Path ID 4
