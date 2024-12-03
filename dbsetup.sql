@@ -98,3 +98,15 @@ INSERT INTO route (path_id, bus_id, license_number) VALUES
 (1, 1, 'L001'),
 (2, 2, 'L002'),
 (2, 2, 'L002');
+
+INSERT INTO messages (send_user, receive_user, message, category) VALUES
+(1, 2, 'The bus broke down on the highway!', 'URGENT'),
+(2, 1, 'I need the bus maintenance report for last month.', 'BUS_MAINTENANCE'),
+(3, 4, 'The morning shift has been rescheduled to 7:00 AM.', 'SCHEDULING'),
+(4, 3, 'Can you please send me the latest bus route map?', 'OTHER'),
+(5, 1, 'The bus is due for its annual inspection next week.', 'BUS_MAINTENANCE'),
+(1, 3, 'There is a traffic jam on the highway, please reroute the bus.', 'URGENT'),
+(2, 4, 'The afternoon shift has been cancelled due to low demand.', 'SCHEDULING'),
+(3, 5, 'Can you please send me the driver contact information?', 'OTHER'),
+(4, 1, 'The bus maintenance team will arrive at 9:00 AM tomorrow.', 'BUS_MAINTENANCE'),
+(5, 2, 'Please submit your daily report by the end of the day.', 'OTHER');
