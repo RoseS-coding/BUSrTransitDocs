@@ -18,9 +18,11 @@ public class ManageUsersFrame extends JFrame {
     private JTextField nameField; // New field for name
     private JTextField emailField; // New field for email
     private JComboBox<UserType> userTypeComboBox; // ComboBox for user type
+    private UserService userService;
 
-    public ManageUsersFrame(AdminAction adminAction) {
+    public ManageUsersFrame(AdminAction adminAction, UserService userService) {
         this.adminAction = adminAction;
+        this.userService = userService;
         setupUI();
     }
 
@@ -130,6 +132,12 @@ public class ManageUsersFrame extends JFrame {
     private void viewUsers() {
         StringBuilder usersList = new StringBuilder();
         List<User> users = adminAction.getUsers(); // Assuming getUsers method exists in AdminAction
+
+        System.out.println("Number of users: " + users.size());
+        if (users.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "No users found.", "User  List", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        }
         for (User  user : users) {
             usersList.append(user.toString()).append("\n"); // Assuming User class has a toString method
         }
