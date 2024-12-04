@@ -1,6 +1,8 @@
 #meaningful queries
 #Required to mark who created each query
-    
+
+#Setting the database for the queries
+USE busrtransitdb;
 #search for all of a driver's routes by their name
 #Created by Roselyn Schnabel
 # This query was created with the intent of use by a driver so that they can have a clear view of the routes assigned to their schedule. 
@@ -119,10 +121,12 @@ DELIMITER ;
 #Automatically update the driver table - A delete statement that runs a trigger in which the trigger deletes data in one table.
 #Created by Roselyn Schnabel
 #This query is a complement of the previous one, and automatically updates the driver table when a driver usertype is deleted. 
+DELIMITER //
 CREATE TRIGGER before_user_delete
 BEFORE DELETE ON Users
 FOR EACH ROW
 BEGIN
     DELETE FROM Driver WHERE user_id = OLD.user_id;
 END;
-
+//
+DELIMITER ;
