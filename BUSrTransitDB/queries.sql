@@ -102,6 +102,8 @@ ORDER BY
 #Automatically update the driver table - An insert statement that runs a trigger in which the trigger adds data or updates data in a table
 #Created by Roselyn Schnabel
 #This query will update when driver table when a new user with usertype Driver is created
+USE busrtransitdb;
+DELIMITER //
 CREATE TRIGGER after_user_insert
 AFTER INSERT ON Users
 FOR EACH ROW
@@ -111,6 +113,8 @@ BEGIN
         VALUES (CONCAT('L', NEW.user_id), NEW.user_id, NEW.name);
     END IF;
 END;
+//
+DELIMITER ;
 
 #Automatically update the driver table - A delete statement that runs a trigger in which the trigger deletes data in one table.
 #Created by Roselyn Schnabel
