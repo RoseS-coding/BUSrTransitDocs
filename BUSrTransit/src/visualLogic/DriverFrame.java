@@ -47,6 +47,10 @@ public class DriverFrame extends JFrame {
         sendMessageButton.addActionListener(e -> sendMessageToAdmin());
         panel.add(sendMessageButton, BorderLayout.EAST);
         
+        JButton viewMessagesButton = new JButton("View Messages");
+        viewMessagesButton.addActionListener(e -> viewMessages());
+        panel.add(viewMessagesButton, BorderLayout.CENTER);
+        
         JButton exitButton = new JButton("Exit");
         exitButton.addActionListener(e -> {
             int confirm = JOptionPane.showConfirmDialog(this, "Are you sure you want to exit?", "Confirm Exit", JOptionPane.YES_NO_OPTION);
@@ -112,5 +116,30 @@ public class DriverFrame extends JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Admin name cannot be empty.");
         }
+	}
+	
+	
+	private void viewMessages() {
+	    StringBuilder messageList = new StringBuilder("Messages Sent to You:\n");
+	    boolean hasMessages = false;
+
+	    for (Message message : messages) {
+	        if (message.getRecipient().equals(loggedInDriver.getName())) {
+	            messageList.append(message.toString()).append("\n");
+	            hasMessages = true;
+	        }
+	    }
+	    
+	    if (!hasMessages) {
+	        messageList.append("No messages found.");
+	    }
+
+	    // Create a JTextArea to display messages
+	    JTextArea textArea = new JTextArea(messageList.toString(), 10, 40); // 10 rows, 40 columns
+	    textArea.setEditable(false); // Make it read-only
+	    JScrollPane scrollPane = new JScrollPane(textArea); // Add scroll functionality
+
+	    // Show the scroll pane in a dialog
+	    JOptionPane.showMessageDialog(this, scrollPane, "Your Messages", JOptionPane.INFORMATION_MESSAGE);
 	}
 }
