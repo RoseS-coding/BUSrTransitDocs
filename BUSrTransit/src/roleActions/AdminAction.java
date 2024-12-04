@@ -68,6 +68,8 @@ public class AdminAction implements PersonAction {
     
     public void addUser (User user) {
         users.add(user);
+        System.out.println("User  added: " + user.toString());
+        System.out.println("Current user count: " + users.size());
     }
 
     // Method to update a user
@@ -91,7 +93,7 @@ public class AdminAction implements PersonAction {
 
     // Method to get all users
     public List<User> getUsers() {
-        return new ArrayList<>(users); // Return a copy of the user list
+        return userService.getAllUsers(); // Return a copy of the user list
    }
      // Method to add a driver
     public void addDriver(Driver driver) {
@@ -120,7 +122,7 @@ public class AdminAction implements PersonAction {
                    "Name: " + driver.getName() + "\n" +
                    "Assigned Route: " + driverAssignments.getOrDefault(driverId, "Not Assigned");
         } else {
-            return "Driver ID not found: " + driver.getId();
+            return "Driver ID not found: " + driverId;
         }
     }
 
