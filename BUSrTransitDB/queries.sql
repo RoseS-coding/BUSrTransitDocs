@@ -98,3 +98,27 @@ JOIN
     Paths p ON r.path_id = p.path_id
 ORDER BY 
     p.depart_time ASC;
+
+#Automatically update the driver table - An insert statement that runs a trigger in which the trigger adds data or updates data in a table
+#Created by Roselyn Schnabel
+#This query will update when driver table when a new user with usertype Driver is created
+CREATE TRIGGER after_user_insert
+AFTER INSERT ON Users
+FOR EACH ROW
+BEGIN
+    IF NEW.userType = 'DRIVER' THEN
+        INSERT INTO Driver (license_number, user_id, name)
+        VALUES (CONCAT('L', NEW.user_id), NEW.user_id, NEW.name);
+    END IF;
+END;
+
+#Automatically update the driver table - A delete statement that runs a trigger in which the trigger deletes data in one table.
+#Created by Roselyn Schnabel
+#This query is a complement of the previous one, and automatically updates the driver table when a driver usertype is deleted. 
+CREATE TRIGGER before_user_delete
+BEFORE DELETE ON Users
+FOR EACH ROW
+BEGIN
+    DELETE FROM Driver WHERE user_id = OLD.user_id;
+END;
+
