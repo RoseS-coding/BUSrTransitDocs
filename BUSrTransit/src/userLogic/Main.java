@@ -5,21 +5,26 @@ import roleActions.*;
 import visualLogic.*;
 import routeLogic.*;
 import commLogic.*;
+import dataLogic.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Map;
 
 import dataLogic.RouteLoader;
 public class Main {
 	public static void main(String args[]) {
+		
+		
 		UserService userService = new UserService("src/Data/testuserinput.csv");
 		Scanner scanner = new Scanner(System.in);
 		
 		ArrayList<Message> messages = new ArrayList<>();
 		MessageStorage messageStorage = new MessageStorage("src/Data/messages.csv");
 		messages.addAll(messageStorage.loadMessages());
+		
 		
 		//TOOD reformat inputs to be app based
 		
@@ -91,7 +96,7 @@ public class Main {
         switch (user.getUserType()) {
             case ADMIN:
                 AdminAction adminAction = new AdminAction(userService);
-                AdminActionFrame adminActionFrame = new AdminActionFrame(adminAction, busRouteManager, messages);
+                AdminActionFrame adminActionFrame = new AdminActionFrame(user, adminAction, busRouteManager, messageStorage, messages, userService);
                 adminActionFrame.setVisible(true);
                 break;
             case USER:
