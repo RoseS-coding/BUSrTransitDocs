@@ -19,11 +19,17 @@ public class AdminActionFrame extends JFrame {
 	private AdminAction adminAction;
 	private BusRouteManager busRouteManager;
 	private ArrayList<Message> messages;
+	private MessageStorage messageStorage;
+	private UserService userService;
+	private User adminUser;
 	
-    public AdminActionFrame(AdminAction adminAction, BusRouteManager busRouteManager, ArrayList<Message> messages) {
+    public AdminActionFrame(User adminUser, AdminAction adminAction, BusRouteManager busRouteManager, MessageStorage messageStorage, ArrayList<Message> messages, UserService userService) {
         this.adminAction = adminAction; // Store the AdminAction instance
         this.busRouteManager = busRouteManager;
         this.messages = messages;
+        this.userService = userService;
+        this.messageStorage = messageStorage;
+        this.adminUser = adminUser;
         setupUI();
     }
 
@@ -93,20 +99,26 @@ public class AdminActionFrame extends JFrame {
         });
 
         //Need to add message viewing functionality
-        JButton messageButton = new JButton("Messages");
+        JButton messageButton = new JButton("View Your Messages");
         messageButton.addActionListener(e -> viewMessages());
+        
+        JButton sendMessageButton = new JButton("Send a messsage");
+        sendMessageButton.addActionListener(e -> sendMessageToDriver());
+        
         
         // Add buttons to the frame
         routeManagementButton.setBounds(190, 300, 200, 60);
         userManagementButton.setBounds(440, 300,200,60);
         driverManagementButton.setBounds(690, 300, 200, 60);
-        messageButton.setBounds(315, 400, 200, 60);
-        exitButton.setBounds(565, 400, 200, 60);
+        messageButton.setBounds(190, 400, 200, 60);
+        sendMessageButton.setBounds(440, 400, 200, 60);
+        exitButton.setBounds(690, 400, 200, 60);
         
         contentPane.add(routeManagementButton);
         contentPane.add(userManagementButton);
         contentPane.add(driverManagementButton);
         contentPane.add(messageButton);
+        contentPane.add(sendMessageButton);
         contentPane.add(exitButton);
 
     }
@@ -119,7 +131,7 @@ public class AdminActionFrame extends JFrame {
 
     private void openUserManagementFrame() {
         // Create and display the ManageUsersFrame with adminAction
-        ManageUsersFrame userManagementFrame = new ManageUsersFrame(adminAction);
+        ManageUsersFrame userManagementFrame = new ManageUsersFrame(adminAction, userService);
         userManagementFrame.setVisible(true);
     }
     
@@ -137,7 +149,12 @@ public class AdminActionFrame extends JFrame {
             for (Message message : messages) {
                 messageList.append(message.toString()).append("\n"); // Includes category in the output
             }
-            JOptionPane.showMessageDialog(this, messageList.toString(), "Driver Messages", JOptionPane.INFORMATION_MESSAGE);
+
+            JTextArea textArea = new JTextArea(messageList.toString(), 10, 20); // 10 rows, 20 columns
+            textArea.setEditable(false); // Make the text area read-only
+            JScrollPane scrollPane = new JScrollPane(textArea);
+
+            JOptionPane.showMessageDialog(this, scrollPane, "Driver Messages", JOptionPane.INFORMATION_MESSAGE);
         }
     }
     private void sendMessageToDriver() {
@@ -158,9 +175,10 @@ public class AdminActionFrame extends JFrame {
                 );
 
                 if (selectedCategory != null) {
-                    Message message = new Message("Admin", driverName, messageContent, selectedCategory);
+                    Message message = new Message(adminUser.getName(), driverName, messageContent, selectedCategory);
                     messages.add(message); // Store the message
                     JOptionPane.showMessageDialog(this, "Message sent to " + driverName + "!");
+                    messageStorage.saveMessages(messages);
                 } else {
                     JOptionPane.showMessageDialog(this, "Message category selection was cancelled.");
                 }
