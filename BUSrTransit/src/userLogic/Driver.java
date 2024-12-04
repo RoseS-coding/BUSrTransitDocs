@@ -3,12 +3,10 @@ package userLogic;
 public class Driver {
     private String id;
     private String name;
-    private String licenseNumber;
 
-    public Driver(String id, String name, String licenseNumber) {
+    public Driver(String id, String name) {
         this.id = id;
         this.name = name;
-        this.licenseNumber = licenseNumber;
     }
 
     public String getId() {
@@ -19,20 +17,13 @@ public class Driver {
         return name;
     }
 
-    public String getLicenseNumber() {
-        return licenseNumber;
-    }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setLicenseNumber(String licenseNumber) {
-        this.licenseNumber = licenseNumber;
-    }
-
     @Override
     public String toString() {
-        return "Driver ID: " + id + ", Name: " + name + ", License Number: " + licenseNumber;
+        return "Driver ID: " + id + ", Name: " + name;
     }
 }
