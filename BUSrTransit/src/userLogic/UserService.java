@@ -1,7 +1,11 @@
 package userLogic;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+
+import java.util.List;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -76,6 +80,10 @@ public class UserService {
 	
 	public Map<String, User> getUserDatabase() {
 		return userDatabase;
+	}
+	
+	public List<User> getAllUsers() {
+		return new ArrayList<>(userDatabase.values());
 	}
 	
 	public Map<String, Driver> getDriverDatabase() {
