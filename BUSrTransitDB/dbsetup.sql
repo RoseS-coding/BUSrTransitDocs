@@ -123,7 +123,7 @@ INSERT INTO Bus (maintenance, license_plate, capacity) VALUES
 
 INSERT INTO driver (license_number, name, user_id) VALUES
 ('L001', 'jacob', 4),
-('L002', 'Frank Castle', 9);
+('L002', 'Frank Castle', 9),
 ('LMN4321', 'Mike Johnson', 14),
 ('JKL9876', 'Nina Williams', 15),
 ('QRS1234', 'Oscar Isaac', 16),
