@@ -1,3 +1,4 @@
+
 CREATE DATABASE busrtransitdb;
 USE busrtransitdb;
 CREATE TABLE Users (
@@ -56,7 +57,7 @@ INSERT INTO Users (username, password, name, email, userType) VALUES
 ('bob', 'password123', 'bob', 'bob@hotmail.com', 'USER'),
 ('marc', 'iguana', 'marc', 'marc@hotmail.com', 'ADMIN'),
 ('james', 'bjj', 'james', 'james@hotmail.com', 'USER'),
-('jacob', 'bus4life', 'jacob', 'jacob@hotmail.com', 'DRIVER')
+('jacob', 'bus4life', 'jacob', 'jacob@hotmail.com', 'DRIVER'),
 ('bobbie', 'securePass2', 'Bobbie Brown', 'bobbie@example.com', 'USER'),
 ('charlie', 'securePass3', 'Charlie Davis', 'charlie@example.com', 'USER'),
 ('diana', 'securePass4', 'Diana Prince', 'diana@example.com', 'ADMIN'),
@@ -75,7 +76,7 @@ INSERT INTO Users (username, password, name, email, userType) VALUES
 ('sara', 'driverPass7', 'Sara Connor', 'sara@example.com', 'DRIVER'),
 ('tom', 'driverPass8', 'Tom Hardy', 'tom@example.com', 'DRIVER');
 
-INSERT INTO users (username, password, full_name, email, user_type) VALUES
+INSERT INTO users (username, password, name, email, userType) VALUES
 ('anna', 'password11', 'Anna Smith', 'anna.smith@example.com', 'USER'),
 ('ben', 'password12', 'Ben Taylor', 'ben.taylor@example.com', 'USER'),
 ('claire', 'password13', 'Claire Williams', 'claire.williams@example.com', 'USER'),
